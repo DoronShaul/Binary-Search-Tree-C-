@@ -54,6 +54,7 @@ int Tree::left(int key)
             }
             else //there is no left child for this key.
             {
+                
                 throw std::invalid_argument("there is no left leaf to this node.");
             }
         }
@@ -265,15 +266,6 @@ void disconnectNode(Node *leaf)
     }
     leaf->parent=NULL;
     leaf->left=NULL;
-
-
-    /*leaf->parent->right = leaf->left; 
-    if (leaf->left != NULL)
-    {
-        leaf->left->parent = leaf->parent;
-    }
-    leaf->parent = NULL;
-    leaf->left = NULL;*/
 }
 
 //this method removes a node from the tree if it exists.

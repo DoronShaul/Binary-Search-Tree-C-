@@ -19,6 +19,8 @@ int main() {
   threetree.insert(3);
   
   ariel::Tree mytree;  
+  ariel::Tree leftTree;
+  ariel::Tree rightTree;
 
 
   badkan::TestCase tc("Binary tree");
@@ -66,6 +68,30 @@ int main() {
   . CHECK_OK (mytree.insert(10))
   .CHECK_OK    (mytree.remove(11))
   .CHECK_EQUAL (mytree.parent(10), 9)
+  .CHECK_THROWS (mytree.right(10))
+  .CHECK_EQUAL (mytree.right(9),10)
+
+  .CHECK_OK    (leftTree.insert(10))
+  .CHECK_OK    (leftTree.insert(9))
+  .CHECK_OK    (leftTree.insert(8))
+  .CHECK_OK    (leftTree.insert(7))
+  .CHECK_OK    (leftTree.insert(6))
+  .CHECK_OK    (leftTree.remove(8))
+  .CHECK_EQUAL (leftTree.parent(7), 9)
+  .CHECK_EQUAL (leftTree.left(9),7)
+
+  .CHECK_OK    (rightTree.insert(10))
+  .CHECK_OK    (rightTree.insert(11))
+  .CHECK_OK    (rightTree.insert(12))
+  .CHECK_OK    (rightTree.insert(13))
+  .CHECK_OK    (rightTree.insert(14))
+  .CHECK_OK    (rightTree.remove(13))
+  .CHECK_EQUAL (rightTree.parent(14), 12)
+  .CHECK_EQUAL (rightTree.right(12),14)
+  .CHECK_EQUAL (rightTree.parent(12), 11)
+
+
+  
 
   .print();
 
