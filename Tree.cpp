@@ -254,13 +254,26 @@ void Tree::printInorder(Node *leaf)
 //this method disconnects a node from the tree.
 void disconnectNode(Node *leaf)
 {
-    leaf->parent->right = leaf->left; 
+    if(leaf->parent->left==leaf){
+       leaf->parent->left=leaf->left; 
+    }
+    else{
+        leaf->parent->right=leaf->left;
+    }
+    if(leaf->left!=NULL){
+        leaf->left->parent=leaf->parent;
+    }
+    leaf->parent=NULL;
+    leaf->left=NULL;
+
+
+    /*leaf->parent->right = leaf->left; 
     if (leaf->left != NULL)
     {
         leaf->left->parent = leaf->parent;
     }
     leaf->parent = NULL;
-    leaf->left = NULL;
+    leaf->left = NULL;*/
 }
 
 //this method removes a node from the tree if it exists.
@@ -278,7 +291,7 @@ void Tree::remove(int key)
         if (treeRoot->left != NULL)
         {
             Node *biggest = searchBiggestNode(treeRoot->left); //searches for the greatest value in it's left sub-tree.
-            swapValue(biggest, treeRoot); 
+            swapValue(biggest, treeRoot);
             disconnectNode(biggest); 
             delete biggest;
             treeSize--;

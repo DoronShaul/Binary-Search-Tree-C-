@@ -58,7 +58,15 @@ int main() {
   .CHECK_OK (mytree.insert(1))
   .CHECK_OK    (mytree.remove(2))
   .CHECK_EQUAL(mytree.root(), 1)
+  .CHECK_THROWS(mytree.parent(1))
   .CHECK_OK  (mytree.print())
+  .CHECK_THROWS(mytree.insert(3))
+  . CHECK_OK (mytree.insert(9))
+  . CHECK_OK (mytree.insert(11))
+  . CHECK_OK (mytree.insert(10))
+  .CHECK_OK    (mytree.remove(11))
+  .CHECK_EQUAL (mytree.parent(10), 9)
+
   .print();
 
  
